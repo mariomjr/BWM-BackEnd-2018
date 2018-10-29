@@ -1,4 +1,5 @@
 const db = require('../db_conn');
+const userModule = require('./usersModule');
 
 function getAllAddresses() {
     return new Promise((resolve, reject) => {
