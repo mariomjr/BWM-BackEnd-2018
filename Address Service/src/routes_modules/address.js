@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const addressModule = require('../modules/address_module');
+const addressModule = require('../modules/addressModule');
 
 router.use((req, res, next) => {
     next();
@@ -14,12 +14,12 @@ router.get('/', (req,res) => {
     });
 });
 
-router.get('/:id', (req,res) => {
-    const id =  req.params.id;
-    addressModule.getAddressById(id).then(result => {
-        res.status(200).send({id: id, address: result});
+router.get('/:cpf', (req,res) => {
+    const cpf =  req.params.cpf;
+    addressModule.getAddressByCpf(cpf).then(result => {
+        res.status(200).send({cpf: cpf, address: result});
     }).catch(error => {
-        res.status(200).send({"error": "ID inválido!"});
+        res.status(200).send({"error": "CPF inválido!"});
     });
 });
 
@@ -32,22 +32,22 @@ router.post('/', (req,res) => {
     });
 });
 
-router.put('/:id', (req,res) => {
-    const id = req.params.id;
+router.put('/:cpf', (req,res) => {
+    const cpf = req.params.cpf;
     const newAddress = req.body;
-    addressModule.updateAddress(id, newAddress).then(result => {
+    addressModule.updateAddress(cpf, newAddress).then(result => {
         res.status(200).send({old_value: result, new_value: newAddress});
     }).catch(error => {
-        res.status(404).send({error: "ID inválido!"});
+        res.status(404).send({error: error});
     });
 });
 
-router.delete('/:id', (req,res) => {
-    const id = req.params.id;
-    addressModule.deleteAddress(id).then(() => {
+router.delete('/:cpf', (req,res) => {
+    const cpf = req.params.cpf;
+    addressModule.deleteAddress(cpf).then(() => {
         res.sendStatus(200);
     }).catch(error => {
-        res.sendStatus(404);
+        res.status(404).send({error: error});
     });
 });
 

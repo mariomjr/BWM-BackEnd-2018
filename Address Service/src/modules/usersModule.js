@@ -8,7 +8,7 @@ function getCpf(cpf) {
         }).catch(error => {
             reject(error);
         });
-    })
+    });
 }
 
 module.exports = {getCpf};

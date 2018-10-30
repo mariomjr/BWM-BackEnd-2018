@@ -5,6 +5,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const addressSchema = new mongoose.Schema({
+    cpf: String,
     cep: String,
     rua: String,
     bairro: String,
