@@ -28,3 +28,31 @@ Execute o arquivo `index.js`
 
 O servidor estará disponível no endereço:
 http://localhost:3000/enderecos
+
+Endereço
+```javascript
+{
+  cpf: string,
+  cep: string, 
+  rua: string, 
+  bairro: string, 
+  complemento: string,
+  cidade: string,
+  estado: string, 
+  pais: string
+}
+```
+
+### GET
+`/enderecos` => retorna lista de endereços.
+
+`/enderecos/:cpf` => retorna endereço associado a um cpf.
+
+### POST
+`/enderecos` => Cria um novo endereço baseado no cpf. Enviar no request body um json Endereço. 
+
+### PUT
+`/enderecos/:cpf` => Edita um endereço baseado no cpf. Enviar no request body um json Endereço.
+
+### DELETE
+`/enderecos/:cpf` => Exclui um endereço da base baseado no cpf.
